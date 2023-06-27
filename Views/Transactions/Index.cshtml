@@ -1,0 +1,73 @@
+﻿@using VeilStats.Helpers;
+@{
+    ViewData["Title"] = Resource.NavMenu_Transactions;
+}
+@section meta_tags{
+    <meta name="description" content="@Resource.Transactions_MetaDescription">
+    <meta name="og:description" content="@Resource.Transactions_MetaDescription">
+}
+<style>
+    .canvasjs-chart-tooltip {
+        margin-bottom: -100px;
+        margin-left: -60px;
+    }
+
+    #divPosDiffLineContainer .canvasjs-chart-tooltip,
+    #divPowDiffLineContainer .canvasjs-chart-tooltip {
+        margin-bottom: -100px;
+        margin-left: -60px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="real-time-tile stat-shadow">
+            <h3 class="chart-title">@Resource.Transactions_PageTitle</h3>
+            <div class="text-center last-update">@Resource.Pow_LastUpdated <span class="last-update-text"></span></div>
+            <div id="divDailyTxCountLineLoading" class="text-center"><div class="veil-spinner"></div></div>
+            <div id="divDailyTxCountLineContainer" class="visibility-hidden chart-container">
+                <div id="ctrDailyTxCountLine" class="line-chart-responsive"></div>
+            </div>
+            <div class="text-center" style="padding-top: 15px">
+                <div class="btn-group btn-group-lg text-center my-btn-group-responsive" role="group" aria-label="Daily Transactions Options">
+                    <button type="button" class="btn btn-primary btn-cta" data-type="2" data-range="1">@Resource.Transactions_30Days</button>
+                    <button type="button" class="btn btn-primary" data-type="2" data-range="2">@Resource.Transactions_60Days</button>
+                    <button type="button" class="btn btn-primary" data-type="2" data-range="3">@Resource.Transactions_90Days</button>
+                    <button type="button" class="btn btn-primary" data-type="2" data-range="4">@Resource.Transactions_180Days</button>
+                </div>
+            </div>
+            <div class="text-center font-small paddingTop10">@Resource.Pow_ZoomChart</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="real-time-tile stat-shadow">
+            <h3 class="chart-title">@Resource.Transactions_BlockTransactions</h3>
+            <div class="text-center last-update">@Resource.Pow_LastUpdated <span class="last-update-text"></span></div>
+            <div id="divTxCountLineLoading" class="text-center"><div class="veil-spinner"></div></div>
+            <div id="divTxCountLineContainer" class="visibility-hidden chart-container">
+                <div id="ctrTxCountLine" class="line-chart-responsive"></div>
+            </div>
+            <div class="text-center" style="padding-top: 15px">
+                <div class="btn-group  btn-group-lg text-center my-btn-group-responsive" role="group" aria-label="Transactions Options">
+                    <button type="button" class="btn btn-primary btn-cta" data-type="1" data-range="1">@Resource.Transactions_7Days</button>
+                    <button type="button" class="btn btn-primary" data-type="1" data-range="2">@Resource.Transactions_30Days</button>
+                    <button type="button" class="btn btn-primary" data-type="1" data-range="3">@Resource.Transactions_60Days</button>
+                    <button type="button" class="btn btn-primary" data-type="1" data-range="4">@Resource.Transactions_90Days</button>
+                </div>
+            </div>
+            <div class="text-center font-small paddingTop10">@Resource.Pow_ZoomChart</div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @Scripts.Render("~/Scripts/transactions.js?v=" + SessionSingleton.Current.ScriptId)
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                triggerTransactionCalls();
+            }, 50); // milliseconds
+        });
+    </script>
+}
+

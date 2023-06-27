@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D5FB3FCD-1A4B-454B-87CD-67D2EC9177D5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VeilStats</RootNamespace>
+    <AssemblyName>VeilStats</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44341</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="netstandard" />
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="VeilWebTranslations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>aSharedDlls\VeilWebTranslations.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiModel\BlockchainInfo.cs" />
+    <Compile Include="ApiModel\Blockbook.cs" />
+    <Compile Include="ApiModel\CoinPrice.cs" />
+    <Compile Include="ApiModel\MoneySupply.cs" />
+    <Compile Include="ApiModel\NetworkData.cs" />
+    <Compile Include="ApiModel\Zerocoinsupply.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AllTimeController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ChartsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\DenomEfficiencyController.cs" />
+    <Compile Include="Controllers\MiningCalcController.cs" />
+    <Compile Include="Controllers\PosController.cs" />
+    <Compile Include="Controllers\PowController.cs" />
+    <Compile Include="Controllers\ProgPowController.cs" />
+    <Compile Include="Controllers\RandomXController.cs" />
+    <Compile Include="Controllers\ResourceController.cs" />
+    <Compile Include="Controllers\RpcApiController.cs" />
+    <Compile Include="Controllers\ShaController.cs" />
+    <Compile Include="Controllers\StakeDistributionController.cs" />
+    <Compile Include="Controllers\StakeRoiController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
+    <Compile Include="DTO\Chart\DataPoint.cs" />
+    <Compile Include="DTO\Chart\LineGraph.cs" />
+    <Compile Include="DTO\History\HistoryData.cs" />
+    <Compile Include="DTO\RealTime\Address.cs" />
+    <Compile Include="DTO\RealTime\BlockTypeTally.cs" />
+    <Compile Include="DTO\RealTime\CurrentBlock.cs" />
+    <Compile Include="DTO\RealTime\CurrentPosDiff.cs" />
+    <Compile Include="DTO\RealTime\CurrentPowDiff.cs" />
+    <Compile Include="DTO\RealTime\CurrentPrice.cs" />
+    <Compile Include="DTO\RealTime\PieSlice.cs" />
+    <Compile Include="DTO\RealTime\RealTimeData.cs" />
+    <Compile Include="DTO\RealTime\ZeroDenom.cs" />
+    <Compile Include="DTO\RealTime\ZeroSupply.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\MvcHelper.cs" />
+    <Compile Include="Helpers\SessionSingleton.cs" />
+    <Compile Include="Models\MiningCalc.cs" />
+    <Compile Include="Models\MiningCalcResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VeilStatConst.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="aSharedDlls\es\VeilWebTranslations.resources.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="aSharedDlls\ko\VeilWebTranslations.resources.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="aSharedDlls\ru\VeilWebTranslations.resources.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="aSharedDlls\VeilWebTranslations.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="aSharedDlls\zh\VeilWebTranslations.resources.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-toggle.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\countdown-clock.css" />
+    <Content Include="Content\lang-menu.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="images\flags\en.png" />
+    <Content Include="images\flags\es.png" />
+    <Content Include="images\flags\ko.png" />
+    <Content Include="images\flags\ru.png" />
+    <Content Include="images\flags\zh.png" />
+    <Content Include="images\icons\btc-icon.png" />
+    <Content Include="images\icons\Coinblockers.png" />
+    <Content Include="images\icons\frog.png" />
+    <Content Include="images\icons\luxor-logo.svg" />
+    <Content Include="images\icons\preview.png" />
+    <Content Include="images\veil\background.png" />
+    <Content Include="images\veil\veil-spinner.svg" />
+    <Content Include="images\veil\veil-logo-stacked.jpg" />
+    <Content Include="images\veil\veil-logo.png" />
+    <Content Include="images\veil\VeilHorizontalBlackonWhite.png" />
+    <Content Include="images\veil\VeilHorizontalWhiteonDark.png" />
+    <Content Include="images\veil\VeilHorizontalWhiteonDarkWhiteVeilMark.png" />
+    <Content Include="images\veil\VeilVerticalBlackonWhite.png" />
+    <Content Include="images\veil\VeilVerticalWhiteonDark.png" />
+    <Content Include="images\veil\VeilVerticalWhiteonDark_WhiteVeilMark.png" />
+    <Content Include="images\veil\Veil_mark_circle_250px.png" />
+    <Content Include="images\veil\Veil_mark_circle_55px.png" />
+    <Content Include="Content\grid.min.css" />
+    <Content Include="Scripts\Charts\VeilCommon.js" />
+    <Content Include="Scripts\Charts\VeilPieChart.js" />
+    <Content Include="Scripts\common\countdown-clock.js" />
+    <Content Include="Scripts\common\CultureHelper.js" />
+    <Content Include="Scripts\common\grid.min.js" />
+    <Content Include="Scripts\common\HashHelper.js" />
+    <Content Include="Scripts\common\JsonToDataTable.js" />
+    <Content Include="Scripts\progpow.js" />
+    <Content Include="Scripts\randomx.js" />
+    <Content Include="Scripts\pos.js" />
+    <Content Include="Scripts\sha.js" />
+    <Content Include="Scripts\lib\bootstrap-toggle.js" />
+    <Content Include="Scripts\lib\bootstrap.js" />
+    <Content Include="Scripts\lib\bootstrap.min.js" />
+    <Content Include="fonts\NoirPro-Bold.ttf" />
+    <Content Include="fonts\NoirPro-BoldItalic.ttf" />
+    <Content Include="fonts\NoirPro-Heavy.ttf" />
+    <Content Include="fonts\NoirPro-HeavyItalic.ttf" />
+    <Content Include="fonts\NoirPro-Italic.ttf" />
+    <Content Include="fonts\NoirPro-Light.ttf" />
+    <Content Include="fonts\NoirPro-LightItalic.ttf" />
+    <Content Include="fonts\NoirPro-Medium.ttf" />
+    <Content Include="fonts\NoirPro-MediumItalic.ttf" />
+    <Content Include="fonts\NoirPro-Regular.ttf" />
+    <Content Include="fonts\NoirPro-SemiBold.ttf" />
+    <Content Include="fonts\NoirPro-SemiBoldItalic.ttf" />
+    <Content Include="App_Data\MiningCalc\price.json" />
+    <Content Include="App_Data\MiningCalc\miner1.json" />
+    <Content Include="JsonDatasets\PowDiffProgPow\1\data.json" />
+    <Content Include="JsonDatasets\PowDiffProgPow\2\data.json" />
+    <Content Include="JsonDatasets\PowDiffProgPow\3\data.json" />
+    <Content Include="JsonDatasets\PowDiffProgPow\4\data.json" />
+    <Content Include="JsonDatasets\PowDiffRandomX\1\data.json" />
+    <Content Include="JsonDatasets\PowDiffRandomX\2\data.json" />
+    <Content Include="JsonDatasets\PowDiffRandomX\3\data.json" />
+    <Content Include="JsonDatasets\PowDiffRandomX\4\data.json" />
+    <Content Include="JsonDatasets\PowDiffSha\1\data.json" />
+    <Content Include="JsonDatasets\PowDiffSha\2\data.json" />
+    <Content Include="JsonDatasets\PowDiffSha\3\data.json" />
+    <Content Include="JsonDatasets\PowDiffSha\4\data.json" />
+    <Content Include="JsonDatasets\Rpc\getblockchaininfo\data.json" />
+    <Content Include="JsonDatasets\Rpc\getchainalgostats\data.json" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\Local IIS.pubxml" />
+    <None Include="Properties\PublishProfiles\veil-stats.com - Web Deploy.pubxml" />
+    <None Include="Scripts\lib\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\lib\canvasjs.min.js" />
+    <Content Include="Scripts\Charts\VeilLineChartMultiSeries.js" />
+    <Content Include="Scripts\denom-efficiency.js" />
+    <Content Include="Scripts\graph-data.js" />
+    <Content Include="Scripts\lib\jquery-3.3.1.js" />
+    <Content Include="Scripts\lib\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\lib\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\lib\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\lib\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\lib\jquery.validate.js" />
+    <Content Include="Scripts\lib\jquery.validate.min.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\mining-calc.js" />
+    <Content Include="Scripts\mining-pools.js" />
+    <Content Include="Scripts\lib\modernizr-2.8.3.js" />
+    <Content Include="Scripts\realtimedata.js" />
+    <Content Include="Scripts\stake-distribution.js" />
+    <Content Include="Scripts\stake-roi.js" />
+    <Content Include="Scripts\transactions.js" />
+    <Content Include="SqlScripts\Upgrade.sql" />
+    <Content Include="Scripts\Charts\VeilLineChart.js" />
+    <Content Include="web.config" />
+    <Content Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
+    <Content Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Charts\Index.cshtml" />
+    <Content Include="Views\AllTime\Index.cshtml" />
+    <Content Include="Views\DenomEfficiency\Index.cshtml" />
+    <Content Include="Views\StakeDistribution\Index.cshtml" />
+    <Content Include="Views\Pow\Index.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\MiningCalc\Index.cshtml" />
+    <Content Include="Views\StakeRoi\Index.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Resource\Refresh.cshtml" />
+    <Content Include="Views\Resource\SetCulture.cshtml" />
+    <Content Include="Views\Shared\_CountdownClock.cshtml" />
+    <Content Include="Views\Pos\Index.cshtml" />
+    <Content Include="Views\Sha\Index.cshtml" />
+    <Content Include="Views\RandomX\Index.cshtml" />
+    <Content Include="Views\ProgPow\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="JsonDatasetsTestnet\PosDiff\1\" />
+    <Folder Include="JsonDatasetsTestnet\PosDiff\2\" />
+    <Folder Include="JsonDatasetsTestnet\PosDiff\3\" />
+    <Folder Include="JsonDatasetsTestnet\PosDiff\4\" />
+    <Folder Include="JsonDatasets\BlockSplitPercent\1\" />
+    <Folder Include="JsonDatasets\BlockSplitPercent\2\" />
+    <Folder Include="JsonDatasets\BlockSplitPercent\3\" />
+    <Folder Include="JsonDatasets\BlockSplitPercent\4\" />
+    <Folder Include="JsonDatasets\BlockSplit\1\" />
+    <Folder Include="JsonDatasets\BlockSplit\2\" />
+    <Folder Include="JsonDatasets\BlockSplit\3\" />
+    <Folder Include="JsonDatasets\BlockSplit\4\" />
+    <Folder Include="JsonDatasets\BlockTally\" />
+    <Folder Include="JsonDatasets\DailyTxCount\1\" />
+    <Folder Include="JsonDatasets\DailyTxCount\2\" />
+    <Folder Include="JsonDatasets\DailyTxCount\3\" />
+    <Folder Include="JsonDatasets\DailyTxCount\4\" />
+    <Folder Include="JsonDatasets\DenomEfficiencyRaw\" />
+    <Folder Include="JsonDatasets\DenomEfficiency\1\" />
+    <Folder Include="JsonDatasets\DenomEfficiency\2\" />
+    <Folder Include="JsonDatasets\DenomEfficiency\3\" />
+    <Folder Include="JsonDatasets\DenomSize\1\" />
+    <Folder Include="JsonDatasets\DenomSize\2\" />
+    <Folder Include="JsonDatasets\DenomSize\3\" />
+    <Folder Include="JsonDatasets\DenomSize\4\" />
+    <Folder Include="JsonDatasets\MiningCalc\" />
+    <Folder Include="JsonDatasets\MoneySupply\1\" />
+    <Folder Include="JsonDatasets\MoneySupply\2\" />
+    <Folder Include="JsonDatasets\MoneySupply\3\" />
+    <Folder Include="JsonDatasets\MoneySupply\4\" />
+    <Folder Include="JsonDatasets\PosDiff\1\" />
+    <Folder Include="JsonDatasets\PosDiff\2\" />
+    <Folder Include="JsonDatasets\PosDiff\3\" />
+    <Folder Include="JsonDatasets\PosDiff\4\" />
+    <Folder Include="JsonDatasets\PowDiffx16rt\1\" />
+    <Folder Include="JsonDatasets\PowDiffx16rt\2\" />
+    <Folder Include="JsonDatasets\PowDiffx16rt\3\" />
+    <Folder Include="JsonDatasets\PowDiffx16rt\4\" />
+    <Folder Include="JsonDatasets\PowDiff\1\" />
+    <Folder Include="JsonDatasets\PowDiff\2\" />
+    <Folder Include="JsonDatasets\PowDiff\3\" />
+    <Folder Include="JsonDatasets\PowDiff\4\" />
+    <Folder Include="JsonDatasets\TxCount\1\" />
+    <Folder Include="JsonDatasets\TxCount\2\" />
+    <Folder Include="JsonDatasets\TxCount\3\" />
+    <Folder Include="JsonDatasets\TxCount\4\" />
+    <Folder Include="JsonDatasets\ZerocoinStake\1\" />
+    <Folder Include="JsonDatasets\ZerocoinStake\2\" />
+    <Folder Include="JsonDatasets\ZerocoinStake\3\" />
+    <Folder Include="Views\Base\" />
+    <Folder Include="Views\RpcApi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\lib\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\lib\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>58066</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44341/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>https://localhost:44341/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

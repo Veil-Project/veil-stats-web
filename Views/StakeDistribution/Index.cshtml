@@ -1,0 +1,75 @@
+﻿@using VeilStats.Helpers;
+@{
+    ViewData["Title"] = Resource.StakeDistribution_PageTitle;
+}
+@section meta_tags{
+    <meta name="description" content="@Resource.StakeDistribution_MetaDescription">
+    <meta name="og:description" content="@Resource.StakeDistribution_MetaDescription">
+}
+<style>
+    .canvasjs-chart-tooltip {
+        margin-bottom: -100px;
+        margin-left: -60px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="real-time-tile stat-shadow">
+            <h3 class="chart-title">@Resource.StakeDistribution_ChartTitle</h3>
+            <div class="text-center last-update">@Resource.StakeDistribution_LastUpdated<span id="spanAllMaLastUpdated"></span></div>
+            <div class="text-center color65D5E7">@Resource.StakeDistribution_DenomToggle</div>
+            <div id="divAllMaLineLoading" class="text-center"><div class="veil-spinner"></div></div>
+            <div id="divAllMaLineContainer" class="visibility-hidden chart-container">
+                <div id="ctrAllMaLine" class="line-chart-responsive"></div>
+            </div>
+            <div class="text-center" style="padding-top: 15px">
+                <div class="btn-group btn-group-lg text-center my-btn-group-responsive three-button" role="group" aria-label="PoS Difficulty Options">
+                    <button type="button" class="btn btn-primary btn-cta" data-type="1" data-range="1">@Resource.StakeDistribution_1DayMA</button>
+                    <button type="button" class="btn btn-primary" data-type="1" data-range="2">@Resource.StakeDistribution_3DayMA</button>
+                    <button type="button" class="btn btn-primary" data-type="1" data-range="3">@Resource.StakeDistribution_7DayMA</button>
+                </div>
+            </div>
+            <div class="text-center font-small paddingTop10">@Resource.Charts_ZoomChart</div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h3>@Resource.StakeDistribution_HowCalculated</h3>
+        <h4>@Resource.StakeDistribution_SupplyCalculation</h4>
+        @Resource.StakeDistribution_TotalSupplyFn<br />
+        @Resource.StakeDistribution_DenomSupplyFn<br />
+        <label><u>@Resource.StakeDistribution_DenomPercentageSupply</u></label> = @Resource.StakeDistribution_DenomSupply / @Resource.StakeDistribution_TotalSupply<br />
+        <br />
+        <h4>@Resource.StakeDistribution_RewardCalculation</h4>
+        @Resource.StakeDistribution_NumberOfPosFn<br />
+        @Resource.StakeDistribution_NumberOfStakedFn<br />
+        <label><u>@Resource.StakeDistribution_DenomConversionRate</u></label> = @Resource.StakeDistribution_NumberBlocksStakedDenom / @Resource.StakeDistribution_NumberPoSBlocks<br />
+        <br />
+        <h4>@Resource.StakeDistribution_EfficiencyCalculation</h4>
+        @Resource.StakeDistribution_DenomEfficiency = <label>(<u>@Resource.StakeDistribution_DenomConversionRate</u> / <u> @Resource.StakeDistribution_DenomPercentageSupply</u>)</label> * 100
+        <br />
+        <br />
+        <h4>@Resource.StakeDistribution_MovingAverage</h4>
+        @Resource.StakeDistribution_MA1Day<br />
+        @Resource.StakeDistribution_MA3Day<br />
+        @Resource.StakeDistribution_MA7Day<br />
+        <br />
+        <span class="color65D5E7">@Resource.StakeDistribution_CalculationIncorrect</span>
+    </div>
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/stake-distribution.js?v=" + SessionSingleton.Current.ScriptId)
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                triggerStakeDistributionCalls();
+            }, 50); // milliseconds
+        });
+    </script>
+}
+
+
+

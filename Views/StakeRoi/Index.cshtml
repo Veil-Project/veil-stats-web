@@ -1,0 +1,191 @@
+﻿@using VeilStats.Helpers;
+@{
+    ViewData["Title"] = Resource.StakeRoi_MainHeading;
+}
+@section meta_tags{
+    <meta name="description" content="@Resource.StakeRoi_MainHeading">
+    <meta name="og:description" content="@Resource.StakeRoi_MainHeading">
+}
+<style>
+    h1 {
+        margin-top: 30px;
+    }
+
+    table {
+        margin-bottom: 15px;
+    }
+
+    th, td {
+        padding: 0;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    .stake-tile {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sign-tile {
+        display: inline-block;
+        margin: 0;
+        padding: 10px 15px;
+        vertical-align: top;
+        font-size: 26px;
+        padding: 10px 15px;
+    }
+
+    .stake-tile div > label {
+        color: #65D5E7
+    }
+
+    .btn-group {
+        margin-top: 30px;
+    }
+
+    .mobile-only {
+        display: none;
+    }
+
+    .mobile-divider {
+        border: none;
+    }
+
+    @@media (max-width: 767px) {
+        .btn-group {
+            width: 75%;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+            .btn-group.three-button > .btn {
+                width: 100%;
+                border-radius: 6px !important;
+            }
+
+        .stake-tile {
+            display: block;
+            text-align: left;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sign-tile {
+            display: none;
+        }
+
+        .desktop-only {
+            display: none !important;
+        }
+
+
+        .mobile-only {
+            display: block;
+        }
+
+        .mobile-table {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+            .mobile-table > div > div {
+                display: table-cell;
+                width: 100%
+            }
+
+        .mobile-divider {
+            border-bottom: 2px solid #65D5E7;
+            padding-left: 90px;
+        }
+
+        .mobile-sign-tile {
+            position: absolute;
+            right: 100px;
+        }
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="">@Resource.StakeRoi_MainHeading</h1>
+        <div class="text-center last-update">@Resource.StakeRoi_LastUpdated <span id="spanAllMaLastUpdated"></span></div>
+        <br />
+        <br />
+
+        <div class="text-center mobile-table">
+            <div class="stake-tile">
+                <div class="mobile-only"><label>@Resource.StakeRoi_TotalZerocoins</label></div>
+                <div id="lblDailyTotalZerocoins"><div class="veil-spinner height25px"></div></div>
+                <div class="desktop-only"><label>@Resource.StakeRoi_TotalZerocoins</label></div>
+            </div>
+            <div class="sign-tile">/</div>
+            <div class="stake-tile">
+                <div class="mobile-only"><label>@Resource.StakeRoi_DailyPosBlocks</label></div>
+                <div class="mobile-divider position-relative">
+                    <div class="mobile-only mobile-sign-tile">/</div>
+                    <div id="lblDailyBlocks"><div class="veil-spinner height25px"></div></div>
+                </div>
+                <div class="desktop-only"><label>@Resource.StakeRoi_DailyPosBlocks</label></div>
+            </div>
+            <div class="sign-tile">&#8773;</div>
+            <div class="stake-tile">
+                <div class="mobile-only"><label>Veil</label></div>
+                <div class="position-relative">
+                    <div class="mobile-only mobile-sign-tile">&#8773;</div>
+                    <div id="lblDailyVeil"><div class="veil-spinner height25px"></div></div>
+                    <div id="lblWeeklyVeil" style="display:none;"></div>
+                    <div id="lblMonthlyVeil" style="display:none;"></div>
+                </div>
+                <div class="desktop-only"><label>Veil</label></div>
+            </div>
+            <br />
+            <div class="btn-group btn-group-lg text-center my-btn-group-responsive three-button" role="group" aria-label="Stake Frequency Options">
+                <button type="button" class="btn btn-primary btn-cta" data-type="1">@Resource.StakeRoi_Daily</button>
+                <button type="button" class="btn btn-primary" data-type="2">@Resource.StakeRoi_Weekly</button>
+                <button type="button" class="btn btn-primary" data-type="3">@Resource.StakeRoi_Monthly</button>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <h3 style="margin-bottom:5px;">@Resource.StakeRoi_StakeAssumptions</h3>
+        <ul>
+            <li>@Resource.StakeRoi_StakeAssumptions1 </li>
+            <li>@Resource.StakeRoi_StakeAssumptions2</li>
+            <li>@Resource.StakeRoi_StakeAssumptions3</li>
+            <li>@Resource.StakeRoi_StakeAssumptions4</li>
+            <li>@Resource.StakeRoi_StakeAssumptions5</li>
+            <li>@Resource.StakeRoi_StakeAssumptions6</li>
+            <li class="color65D5E7"><span>@Resource.StakeRoi_StakeAssumptions7</span></li>
+        </ul>
+        <br />
+    </div>
+    <div class="col-md-6">
+        <h3 style="margin-bottom:5px;">@Resource.StakeRoi_MoreInformation</h3>
+        Visit Staking Rewards: <a href="https://www.stakingrewards.com/earn/veil" style="color: rgb(101, 213, 231);">https://www.stakingrewards.com/earn/veil</a>
+        @*@Resource.StakeRoi_WhichDenomsBest @Html.ActionLink(Resource.StakeRoi_ClickHere, "Index", "StakeDistribution", null, new { @style = "color: rgb(101, 213, 231);" })*@
+    </div>
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/stake-roi.js?v=" + SessionSingleton.Current.ScriptId)
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                triggerCalls();
+            }, 50); // milliseconds
+        });
+    </script>
+
+
+}
+
+
+
+

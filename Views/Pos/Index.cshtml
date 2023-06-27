@@ -1,0 +1,54 @@
+﻿@using VeilStats.Helpers;
+@{
+    ViewData["Title"] = Resource.NavMenu_Charts;
+}
+@section meta_tags{
+    <meta name="description" content="@Resource.Charts_MetaDescription">
+    <meta name="og:description" content="@Resource.Charts_MetaDescription">
+}
+<style>
+    .canvasjs-chart-tooltip {
+        margin-bottom: -100px;
+        margin-left: -60px;
+    }
+
+    #divPosDiffLineContainer .canvasjs-chart-tooltip,
+    #divPowDiffLineContainer .canvasjs-chart-tooltip {
+        margin-bottom: -100px;
+        margin-left: -60px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="real-time-tile stat-shadow">
+            <h3 class="chart-title">@Resource.Charts_PosDifficulty</h3>
+            <div class="text-center last-update">@Resource.Charts_LastUpdated <span class="last-update-text"></span></div>
+            <div id="divDiffLineLoading" class="text-center"><div class="veil-spinner"></div></div>
+            <div id="divDiffLineContainer" class="visibility-hidden chart-container">
+                <div id="ctrDiffLine" class="line-chart-responsive"></div>
+            </div>
+            <div class="text-center" style="padding-top: 15px">
+                <div class="btn-group btn-group-lg text-center my-btn-group-responsive" role="group" aria-label="PoS Difficulty Options">
+                    <button type="button" class="btn btn-primary btn-cta" data-type="1" data-range="1">@Resource.Charts_3Days</button>
+                    <button type="button" class="btn btn-primary" data-type="1" data-range="2">@Resource.Charts_30Days</button>
+                    <button type="button" class="btn btn-primary" data-type="1" data-range="3">@Resource.Charts_60Days</button>
+                    <button type="button" class="btn btn-primary" data-type="1" data-range="4">@Resource.Charts_90Days</button>
+                </div>
+            </div>
+            <div class="text-center font-small paddingTop10">@Resource.Charts_ZoomChart</div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/pos.js?v=" + SessionSingleton.Current.ScriptId)
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                triggerCalls();
+            }, 50); // milliseconds
+        });
+    </script>
+}
+

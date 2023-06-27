@@ -1,0 +1,291 @@
+﻿@using VeilStats.Helpers;
+@model VeilStats.Models.MiningCalc
+@{
+    ViewData["Title"] = Resource.MiningCalc_PageTitle;
+}
+@section meta_tags{
+    <meta name="description" content="Veil @Resource.NavMenu_MiningCalculator">
+    <meta name="og:description" content="Veil @Resource.NavMenu_MiningCalculator">
+}
+<style>
+    h2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type="number"] {
+        -moz-appearance: textfield;
+    }
+
+    .input-group {
+        text-align: center;
+    }
+
+    .form-control {
+        width: 75% !important;
+    }
+
+    .mining-tile {
+        margin-bottom: 5px;
+    }
+
+    .input-group {
+        background-color: rgb(128, 252, 253);
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .mining-control {
+        border: 2px solid rgb(128, 252, 253);
+        background-color: #0d124a;
+        color: white;
+        font-size: 14pt;
+        text-align: right;
+        display: inline-block;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        padding-left: 6px;
+        padding-right: 20px;
+        padding-top: 5px;
+        font-weight: 500;
+        width: 75%
+    }
+
+    .mining-control-mini {
+        color: #d3d3d3;
+        font-weight: 400;
+        font-size: 12pt;
+        width: 100%;
+        padding-top: 5px;
+        padding-right: 5px;
+        border-radius: 0;
+        border: none;
+        background-color: transparent;
+    }
+
+    .constants-table {
+        font-size: 12pt;
+    }
+
+        .constants-table tr {
+            border-bottom: 2px solid rgb(128, 252, 253);
+        }
+
+        .constants-table td {
+            width: 50%;
+        }
+
+    .input-group-append {
+        display: inline-block;
+        border: 1px solid rgb(128, 252, 253);
+        color: #0d124a;
+        font-size: 14pt;
+        font-weight: 500;
+        padding-left: 3px;
+        padding-right: 6px;
+        width: 25%
+    }
+
+    .btn {
+        width: 35%;
+        font-weight: 600;
+        font-size: 15pt;
+    }
+
+    .reward-table {
+        margin-top: 7px;
+        width: 100%;
+        overflow: scroll;
+    }
+
+        .reward-table th {
+            color: white;
+            text-align: right;
+            border-top: 1px solid rgb(128, 252, 253);
+            border-bottom: 2px solid rgb(128, 252, 253);
+            padding: 7px 15px 7px 10px;
+            font-weight: 500;
+        }
+
+    th:nth-child(1) {
+        text-align: left !important;
+    }
+
+    .reward-table td {
+        text-align: right;
+        border-bottom: 1px solid rgb(128, 252, 253);
+        font-size: 14pt;
+        padding: 5px 15px 5px 10px;
+        font-weight: 400;
+    }
+
+    td:nth-child(1) {
+        text-align: left !important;
+    }
+
+    .btn-toolbar .btn, .btn-toolbar .btn-group, .btn-toolbar .input-group {
+        float: none;
+    }
+
+    .tooltip.in {
+        opacity: 1;
+        filter: alpha(opacity=100);
+    }
+
+    .tooltip-arrow {
+        top: 0;
+        left: 50%;
+        margin-left: -5px;
+        border-bottom-color: rgb(128, 252, 253); /* black */
+        border-width: 0 5px 5px;
+    }
+
+    .veil-tooltip + .tooltip > .tooltip-inner {
+        background-color: rgb(128, 252, 253);
+        color: #0d124a;
+        font-size: 11pt;
+        font-weight: 400;
+        font-family: NoirPro, sans-serif;
+        padding: 5px 7px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <h1>@ViewData["Title"]</h1>
+        <div class="text-center">@Resource.MiningCalc_PageSubTitle</div>
+        <br />
+    </div>
+</div>
+@using (Ajax.BeginForm("Index", "MiningCalc", new AjaxOptions { HttpMethod = "POST", OnSuccess = "onAjaxRequestSuccess" }, new { @id = "frmMiningCalc", @class = "", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4 text-center mining-tile">
+            <div class="calc-shadow network-tile-even-height">
+                <h2>@Resource.MiningCalc_Hashrate</h2>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.HashRate, new { htmlAttributes = new { @class = "mining-control" } })<div class="input-group-append">Mh/s</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center mining-tile">
+            <div class="calc-shadow network-tile-even-height">
+                <h2>@Resource.MiningCalc_Difficulty</h2>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.Difficulty, new { htmlAttributes = new { @class = "mining-control" } })<div class="input-group-append">Diff</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center mining-tile">
+            <div class="calc-shadow network-tile-even-height">
+                <h2>@Resource.MiningCalc_BlockReward</h2>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.BlockReward, new { htmlAttributes = new { @class = "mining-control" } })<div class="input-group-append">VEIL</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-center mining-tile">
+            <div class="calc-shadow network-tile-even-height">
+                <h2>@Resource.MiningCalc_Power</h2>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.Power, new { htmlAttributes = new { @class = "mining-control" } })<div class="input-group-append">W</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center mining-tile">
+            <div class="calc-shadow network-tile-even-height">
+                <h2>@Resource.MiningCalc_PowerCost</h2>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.PowerCost, new { htmlAttributes = new { @class = "mining-control" } })<div class="input-group-append">$/kWh</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center mining-tile">
+            <div class="calc-shadow network-tile-even-height">
+                <h2>@Resource.MiningCalc_Fees</h2>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.Fees, new { htmlAttributes = new { @class = "mining-control" } })<div class="input-group-append">%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-center mining-tile">
+            <div class="calc-shadow network-tile-even-height">
+                <h2>@Resource.MiningCalc_ExchangeRate</h2>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.ExchangeRate, new { htmlAttributes = new { @class = "mining-control" } })<div class="input-group-append">&#8383;</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center mining-tile">
+            <div class="calc-shadow network-tile-even-height">
+                <h2>@Resource.MiningCalc_BtcValue</h2>
+                <div class="input-group">
+                    @Html.EditorFor(model => model.BtcValue, new { htmlAttributes = new { @class = "mining-control" } })<div class="input-group-append">$</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center mining-tile">
+            <h4>@Resource.MiningCalc_Constants</h4>
+            <table class="width100 constants-table">
+                <tr>
+                    <td>
+                        @Resource.MiningCalc_HashRatePerCoin&nbsp;<label id="hpcID" class="glyphicon glyphicon-info-sign veil-tooltip" data-toggle="tooltip" data-placement="top"
+                                                                         data-html="true" title="@Resource.MiningCalc_Tooltip1<br><br>@Resource.MiningCalc_Tooltip2<br>@Resource.MiningCalc_Tooltip3<br>@Resource.MiningCalc_Tooltip4<br>@Resource.MiningCalc_Tooltip5<br>@Resource.MiningCalc_Tooltip6"></label>
+                    </td>
+                    <td>@Html.EditorFor(model => model.HashRatePerCoin, new { htmlAttributes = new { @class = "mining-control mining-control-mini" } })</td>
+                </tr>
+                <tr>
+                    <td>@Resource.MiningCalc_24hrDiffAvg</td>
+                    <td>@Html.EditorFor(model => model.Diff24hr, new { htmlAttributes = new { @class = "mining-control mining-control-mini" } }) </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="btn-toolbar">
+                <br />
+                <input type="reset" class="btn btn-primary" value="@Resource.MiningCalc_Reset" />
+                <input type="submit" class="btn btn-primary btn-cta" value="@Resource.MiningCalc_Calculate">
+            </div>
+        </div>
+    </div>
+}
+
+<div class="row" style="overflow: auto;">
+    <div class="col-md-12" style="overflow: auto;">
+        <div class="text-center paddingTop10"><h3>@Resource.MiningCalc_EstimatedRewards</h3></div>
+        <div id="divResults"><div class='text-center' style='height:225px'><div class='veil-spinner'></div></div></div>
+    </div>
+</div>
+<br />
+<br />
+<br />
+@section Scripts{
+    <script>
+        var oTest = @Html.Raw(Model.ResultsJson);
+
+        $(document).ready(function () {
+            setTimeout(function () {
+                CreateTableFromJSON('divResults', oTest)
+            }, 50); // milliseconds
+
+            $("#hpcID").tooltip();
+
+        });
+    </script>
+    @Scripts.Render("~/Scripts/mining-calc.js?v=" + SessionSingleton.Current.ScriptId)
+}
+
+
+

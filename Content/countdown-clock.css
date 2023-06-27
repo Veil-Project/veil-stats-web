@@ -1,0 +1,388 @@
+﻿.flipdown {
+    overflow: visible;
+    display:inline-block;
+    /*height: 110px;*/
+}
+
+    .flipdown .rotor-group {
+        position: relative;
+        float: left;
+        padding-right: 30px;
+    }
+
+        .flipdown .rotor-group:last-child {
+            padding-right: 0;
+        }
+
+    .flipdown .rotor-group-heading:before {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    .flipdown .rotor-group:nth-child(1) .rotor-group-heading:before {
+        content: 'Days';
+    }
+
+    .flipdown .rotor-group:nth-child(2) .rotor-group-heading:before {
+        content: 'Hours';
+    }
+
+    .flipdown .rotor-group:nth-child(3) .rotor-group-heading:before {
+        content: 'Minutes';
+    }
+
+    .flipdown .rotor-group:nth-child(4) .rotor-group-heading:before {
+        content: 'Seconds';
+    }
+
+    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
+        content: '';
+        position: absolute;
+        bottom: 20px;
+        left: 115px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+
+    .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+        content: '';
+        position: absolute;
+        bottom: 50px;
+        left: 115px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+
+    .flipdown .rotor {
+        position: relative;
+        float: left;
+        width: 50px;
+        height: 80px;
+        margin: 0px 5px 0px 0px;
+        border-radius: 4px;
+        font-size: 4rem;
+        text-align: center;
+        perspective: 200px;
+    }
+
+        .flipdown .rotor:last-child {
+            margin-right: 0;
+        }
+
+    .flipdown .rotor-top,
+    .flipdown .rotor-bottom {
+        overflow: hidden;
+        position: absolute;
+        width: 50px;
+        height: 40px;
+    }
+
+    .flipdown .rotor-leaf {
+        z-index: 1;
+        position: absolute;
+        width: 50px;
+        height: 80px;
+        transform-style: preserve-3d;
+        transition: transform 0s;
+    }
+
+        .flipdown .rotor-leaf.flipped {
+            transform: rotateX(-180deg);
+            transition: all 0.5s ease-in-out;
+        }
+
+    .flipdown .rotor-leaf-front,
+    .flipdown .rotor-leaf-rear {
+        overflow: hidden;
+        position: absolute;
+        width: 50px;
+        height: 40px;
+        margin: 0;
+        transform: rotateX(0deg);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+
+    .flipdown .rotor-leaf-front {
+        line-height: 80px;
+        border-radius: 4px 4px 0px 0px;
+    }
+
+    .flipdown .rotor-leaf-rear {
+        line-height: 0px;
+        border-radius: 0px 0px 4px 4px;
+        transform: rotateX(-180deg);
+    }
+
+    .flipdown .rotor-top {
+        line-height: 80px;
+        border-radius: 4px 4px 0px 0px;
+    }
+
+    .flipdown .rotor-bottom {
+        bottom: 0;
+        line-height: 0px;
+        border-radius: 0px 0px 4px 4px;
+    }
+
+    .flipdown .rotor:after {
+        content: '';
+        z-index: 2;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        width: 50px;
+        height: 40px;
+        border-radius: 0px 0px 4px 4px;
+    }
+
+@media (max-width: 480px) {
+
+    .flipdown {
+        /*width: 312px;
+        height: 70px;*/
+    }
+
+        .flipdown .rotor {
+            font-size: 1.8rem;
+            margin-right: 3px;
+        }
+
+            .flipdown .rotor,
+            .flipdown .rotor-leaf,
+            .flipdown .rotor-leaf-front,
+            .flipdown .rotor-leaf-rear,
+            .flipdown .rotor-top,
+            .flipdown .rotor-bottom,
+            .flipdown .rotor:after {
+                width: 20px;
+            }
+
+        .flipdown .rotor-group {
+            padding-right: 20px;
+        }
+
+            .flipdown .rotor-group:last-child {
+                padding-right: 0px;
+            }
+
+        .flipdown .rotor-group-heading:before {
+            font-size: 0.8rem;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before,
+        .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+            left: 69px;
+        }
+
+        .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):before {
+            bottom: 13px;
+            height: 8px;
+            width: 8px;
+        }
+
+        .flipdown .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+            bottom: 29px;
+            height: 8px;
+            width: 8px;
+        }
+
+        .flipdown .rotor-leaf-front,
+        .flipdown .rotor-top {
+            line-height: 40px;
+        }
+
+        .flipdown .rotor-leaf,
+        .flipdown .rotor {
+            height: 40px;
+        }
+
+            .flipdown .rotor-leaf-front,
+            .flipdown .rotor-leaf-rear,
+            .flipdown .rotor-top,
+            .flipdown .rotor-bottom,
+            .flipdown .rotor:after {
+                height: 20px;
+            }
+}
+
+
+
+.example h1,
+.example p,
+.example .button {
+    transition: all .2s ease-in-out;
+}
+
+    body.light-theme {
+        background-color: #151515;
+    }
+
+        body.light-theme .example h1 {
+            color: #FFFFFF;
+        }
+
+        body.light-theme .example p {
+            color: #FFFFFF;
+        }
+
+        body.light-theme .buttons .button {
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+
+            body.light-theme .buttons .button:hover {
+                color: #151515;
+                background-color: #FFFFFF;
+            }
+
+.example {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    margin: auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+    .example .flipdown {
+        margin: auto;
+    }
+
+    .example h1 {
+        text-align: center;
+        font-weight: 100;
+        font-size: 3em;
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .example p {
+        text-align: center;
+        font-weight: 100;
+        margin-top: 0;
+        margin-bottom: 35px;
+    }
+
+    .example .buttons {
+        width: 100%;
+        height: 50px;
+        margin: 50px auto 0px auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+        .example .buttons p {
+            height: 50px;
+            line-height: 50px;
+            font-weight: 400;
+            padding: 0px 25px 0px 0px;
+            color: #333;
+            margin: 0px;
+        }
+
+    .example .button {
+        display: inline-block;
+        height: 50px;
+        box-sizing: border-box;
+        line-height: 46px;
+        text-decoration: none;
+        color: #333;
+        padding: 0px 20px;
+        border: solid 2px #333;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: all .2s ease-in-out;
+    }
+
+        .example .button:hover {
+            background-color: #333;
+            color: #FFF;
+        }
+
+        .example .button i {
+            margin-right: 5px;
+        }
+
+@media(max-width: 480px) {
+    .example {
+        /*height: 362px;*/
+    }
+
+        .example h1 {
+            font-size: 3.5em;
+        }
+
+        .example p {
+            margin-bottom: 25px;
+        }
+
+        .example .buttons {
+            width: 100%;
+            margin-top: 25px;
+            text-align: center;
+            display: block;
+        }
+
+            .example .buttons p,
+            .example .buttons a {
+                float: none;
+                margin: 0 auto;
+            }
+
+            .example .buttons p {
+                padding-right: 0px;
+            }
+
+            .example .buttons a {
+                display: inline-block;
+            }
+}
+
+/* THEMES */
+
+/********** Theme: dark **********/
+/* Font styles */
+.flipdown.flipdown__theme-dark {
+    font-family: sans-serif;
+    font-weight: bold;
+}
+    /* Rotor group headings */
+    .flipdown.flipdown__theme-dark .rotor-group-heading:before {
+        color: #65d5e7;
+        margin-bottom:5px;
+    }
+    /* Delimeters */
+    .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):before,
+    .flipdown.flipdown__theme-dark .rotor-group:nth-child(n+2):nth-child(-n+3):after {
+        background-color: white;
+        visibility:hidden;
+    }
+    .flipdown.flipdown__theme-dark .rotor {
+        box-shadow: 0 0 10px #65d5e7;
+    }
+
+    /* Rotor tops */
+    .flipdown.flipdown__theme-dark .rotor,
+    .flipdown.flipdown__theme-dark .rotor-top,
+    .flipdown.flipdown__theme-dark .rotor-leaf-front {
+        color: #FFFFFF;
+        background-color: rgba(13,18,74,1);
+    }
+    /* Rotor bottoms */
+    .flipdown.flipdown__theme-dark .rotor-bottom,
+    .flipdown.flipdown__theme-dark .rotor-leaf-rear {
+        color: #FFFFFF;
+        background-color: #001e58;
+    }
+    /* Hinge */
+    .flipdown.flipdown__theme-dark .rotor:after {
+        border-top: solid 1px #151515;
+    }

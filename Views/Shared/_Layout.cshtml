@@ -1,0 +1,162 @@
+﻿@using VeilStats.Helpers;
+
+@{
+    var szLangImgUrl = "/images/flags/en.png";
+    switch (CultureHelper.GetCurrentNeutralCulture())
+    {
+        case "en":
+            szLangImgUrl = "/images/flags/en.png";
+            break;
+        case "es":
+            szLangImgUrl = "/images/flags/es.png";
+            break;
+        case "ru":
+            szLangImgUrl = "/images/flags/ru.png";
+            break;
+        case "ko":
+            szLangImgUrl = "/images/flags/ko.png";
+            break;
+        case "zh":
+            szLangImgUrl = "/images/flags/zh.png";
+            break;
+        default:
+            szLangImgUrl = "/images/flags/en.png";
+            break;
+    }
+
+}
+<!DOCTYPE html>
+<html lang="@CultureHelper.GetCurrentNeutralCulture()" dir="@(CultureHelper.IsRighToLeft() ? "rtl" : "ltr")">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @RenderSection("meta_tags", false)
+    <meta name="og:title" content="@ViewBag.Title | Veil @Resource.NavMenu_Stats">
+    <meta name="og:site_name" content="Veil @Resource.NavMenu_Stats">
+    <meta name="og:url" content="https://veil-stats.com">
+    <meta property="og:image" content="https://veil-stats.com/icons/preview.png">
+    <link rel="shortcut icon" href="~/favicon.ico">
+    <title>@ViewBag.Title | Veil @Resource.NavMenu_Stats</title>
+    @Styles.Render("~/Content/css?v=" + SessionSingleton.Current.ScriptId)
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/nav?v=" + SessionSingleton.Current.ScriptId)
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128841821-4"></script>
+</head>
+<body>
+    @*@{
+            if (SessionSingleton.Current.IsTestnet)
+            {
+            <div class="text-center" style="background-color: lightgray;  opacity:1; color:red; height:50px; font-size:30px; position:fixed; width:100%; z-index:10000;">
+                TESTNET DATA! <a href="/home/mainnet/">Switch to Mainnet Data</a>
+            </div>
+                <div style="height:50px;">
+                    &nbsp;
+                </div>
+            }
+        }*@
+    <div class="navbar ">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a href="@Url.Action("Index", "Home")" class="">
+                    <label style="" class="navbar-logo">
+                        <img class="navbar-logo-img" src="~/images/veil/veil-logo.png" />
+                        <br />&nbsp;&nbsp;@Resource.NavMenu_Stats
+                    </label>
+                </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink(Resource.NavMenu_RealTime, "Index", "Home")</li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resource.NavMenu_Staking</a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink(Resource.NavMenu_Calculation, "Index", "StakeRoi")</li>
+                            <li>@Html.ActionLink(Resource.NavMenu_Distribution, "Index", "StakeDistribution")</li>
+                            @*<li>@Html.ActionLink(Resource.NavMenu_Snapshot, "Index", "DenomEfficiency")</li>*@
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("PoS", "Index", "Pos")</li>
+                    <li>@Html.ActionLink("ProgPow", "Index", "ProgPow")</li>
+                    <li>@Html.ActionLink("RandomX", "Index", "RandomX")</li>
+                    <li>@Html.ActionLink("Sha256", "Index", "Sha")</li>
+                    <li class="lang-menu" style="">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img id="imgCurrentLang" src="@szLangImgUrl" width="60" /></a>
+                        <ul class="dropdown-menu">
+                            <li id="ctrLangEn" class="language-switch-item">
+                                <img src="~/images/flags/en.png" data-lang="en-US" width="60" />
+                            </li>
+                            <li id="ctrLangEs" class="language-switch-item">
+                                <img src="~/images/flags/es.png" data-lang="es-US" width="60" />
+                            </li>
+                            <li id="ctrLangKo" class="language-switch-item">
+                                <img src="~/images/flags/ko.png" data-lang="ko" width="60" />
+                            </li>
+                            <li id="ctrLangRu" class="language-switch-item">
+                                <img src="~/images/flags/ru.png" data-lang="ru" width="60" />
+                            </li>
+                            <li id="ctrLangZh" class="language-switch-item">
+                                <img src="~/images/flags/zh.png" data-lang="zh-CN" width="60" />
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="pageContainer">
+        <div class="contentWrap">
+            <div class="container body-content">
+                @RenderBody()
+            </div>
+        </div>
+        <footer class="footerStyle">
+            <p>
+                <span class="color-white">
+                    &copy; @DateTime.Now.Year - Veil @Resource.NavMenu_Stats
+                </span>
+                <br />
+                @Resource.RealTime_BuiltBy <a class="color-aqua" href="https://github.com/codeofalltrades" target="_blank">codeofalltrades</a>
+                <br />
+                <span><a href="@Url.Action("About", "Home")" class="color-aqua">@Resource.RealTime_About</a></span>
+
+            </p>
+        </footer>
+    </div>
+    <input id="hdnCurrentCulture" type="hidden" value="@CultureHelper.GetCurrentCulture()" />
+    <input id="hdnScriptTranslations" type="hidden" value="" />
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/common/CultureHelper.js?v=@SessionSingleton.Current.ScriptId"></script>
+    <script>
+        var colTranslations = GetScriptTranslations("Script_");
+        document.getElementById("hdnScriptTranslations").value = colTranslations.responseText;
+    </script>
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/helpers?v=" + SessionSingleton.Current.ScriptId)
+    <script src="~/Scripts/lib/canvasjs.min.js?v=@SessionSingleton.Current.ScriptId"></script>
+    @Scripts.Render("~/bundles/charts?v=" + SessionSingleton.Current.ScriptId)
+    @RenderSection("scripts", required: false)
+    @*<a style="display:none;" href="/home/testnet/" >&#8224;</a>*@
+    <script>
+        $(document).ready(function () {
+            $(".language-switch-item").click(function (e) {
+                var szNewLang = $(this).children("img").data("lang");
+                window.location = '/Resource/SetCulture/' + szNewLang;
+            });
+        });
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-128841821-4', { 'anonymize_ip': true });
+    </script>
+</body>
+</html>

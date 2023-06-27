@@ -1,0 +1,42 @@
+﻿@using VeilStats.Helpers;
+
+@{
+    ViewData["Title"] = Resource.RealTime_About;
+}
+@section meta_tags{
+    <meta name="description" content="@Resource.RealTime_MetaDescription">
+    <meta name="og:description" content="@Resource.RealTime_MetaDescription">
+}
+<style>
+    h2 {
+        text-align: left;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <h1>@ViewData["Title"]</h1>
+        <br />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h2>@Resource.About_Why</h2>
+        @Resource.About_WhyReason
+        <br />
+        <h2>@Resource.About_Suggestion</h2>
+        @Resource.About_SuggestionText<a href="mailto:codeofalltrades@outlook.com">codeofalltrades@outlook.com</a>
+        <br />
+        <h2>@Resource.About_Details</h2>
+        @Resource.About_DetailsText1 <a href="https://www.veil-project.com/">www.veil-project.com</a>
+        <br />
+        @Resource.About_DetailsText2 <a href="https://www.coingecko.com/">CoinGecko</a>
+        <br />
+        @Resource.About_DetailsText3
+        <br />
+        <h2>@Resource.About_Enjoy</h2>
+        <br />
+        <br />
+        <br />
+    </div>
+</div>
+<p>

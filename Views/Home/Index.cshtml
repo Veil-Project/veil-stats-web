@@ -1,0 +1,142 @@
+﻿@using VeilStats.Helpers;
+
+@{
+    ViewData["Title"] = "Real-Time Data";
+}
+@section meta_tags{
+    <meta name="description" content="Veil Stats - visualize the Veil network information">
+    <meta name="og:description" content="Veil Stats - visualize the Veil network information">
+}
+<style>
+    h1 {
+        margin-top: 0
+    }
+
+    h2 {
+        margin-bottom: 7px;
+    }
+
+    .mining-tile {
+        margin-bottom: 30px;
+    }
+
+    .pie-chart-margin {
+        margin-bottom: 60px;
+    }
+
+    .veil-spinner {
+        height: 50px;
+        width: 50px;
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <h1>@Resource.RealTime_MainHeading</h1>
+        <div class="text-center margin-bottom-15px">@Resource.RealTime_MainSubHeading</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 mining-tile">
+        <h2>@Resource.RealTime_MarketPrice</h2>
+        <div id="divPriceCardLoading" class="text-center"><div class="veil-spinner"></div></div>
+        <div id="divPriceCard" class="display-none">
+            <div class="text-center opacity_75">$<lable id="lblUsdPrice">---</lable></div>
+            <div class="text-center opacity_75">&euro;<lable id="lblEurPrice">---</lable></div>
+            <div class="text-center opacity_75">
+                <img src="~/images/icons/btc-icon.png" class="bitcoin-image" /><lable id="lblBtcPrice">---</lable>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mining-tile">
+        <h2>@Resource.RealTime_LastBlock</h2>
+        <div class="text-center" id="divBlockNumber"><div class="veil-spinner"></div></div>
+        <div class="text-center" id="divBlockDate"></div>
+        <div class="text-center" id="divBlockTime"></div>
+    </div>
+    <div class="col-md-3 mining-tile">
+        <h2>@Resource.RealTime_PosDiff</h2>
+        <div class="text-center paddingTop10" id="divPoSDiff"><div class="veil-spinner"></div></div>
+    </div>
+    <div class="col-md-3 mining-tile">
+        <h2>@Resource.RealTime_PowDiff</h2>
+        <div class="row">
+            <div class="col-sm-6 text-center">ProgPow</div>
+            <div class="col-sm-6 text-center" id="divProgPowDiff"><div class="veil-spinner"></div></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 text-center">RandomX</div>
+            <div class="col-sm-6 text-center" id="divRandomXDiff"><div class="veil-spinner"></div></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 text-center">SHA256d</div>
+            <div class="col-sm-6 text-center" id="divSHA256dDiff"><div class="veil-spinner"></div></div>
+        </div>
+    </div>
+</div>
+@*<div class="row">
+    <div class="col-md-2">
+        <br />
+    </div>
+    <div class="col-md-4 mining-tile">
+        <h2>@Resource.RealTime_PosBlocks</h2>
+        <table class="width100">
+            <tr>
+                <td class="text-center">
+                    <div class="text-center margin-bottom-5px">@Resource.RealTime_TotalAllTime</div>
+                    <div class="text-center" id="divPosBlockCount"><div class="veil-spinner"></div></div>
+                </td>
+                <td class="text-center">
+                    <div class="text-center margin-bottom-5px">@Resource.RealTime_Last24Hours</div>
+                    <div class="text-center" id="divPosBlockCount24hr"><div class="veil-spinner"></div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4 mining-tile">
+        <h2>@Resource.RealTime_PowBlocks</h2>
+        <table class="width100">
+            <tr>
+                <td class="text-center">
+                    <div class="text-center margin-bottom-5px">@Resource.RealTime_TotalAllTime</div>
+                    <div class="text-center" id="divPowBlockCount"><div class="veil-spinner"></div></div>
+                </td>
+                <td class="text-center">
+                    <div class="text-center margin-bottom-5px">@Resource.RealTime_Last24Hours</div>
+                    <div class="text-center" id="divPowBlockCount24hr"><div class="veil-spinner"></div></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-2">
+        <br />
+    </div>
+</div>*@
+<div class="row">
+    <div class="col-md-6">
+        <h2 class="color65D5E7">@Resource.RealTime_VeilSupply</h2>
+        <div id="divVeilSupplyPieLoading" class="text-center"><div class="veil-spinner"></div></div>
+        <div id="divVeilSupplyPieContainer" class="visibility-hidden">
+            <div id="ctrVeilSupplyPie" class="pie-chart-responsive"></div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <h2 class="color65D5E7">@Resource.RealTime_ZeroCoinSupply</h2>
+        <div id="divZeroSupplyPieLoading" class="text-center"><div class="veil-spinner"></div></div>
+        <div id="divZeroSupplyPieContainer" class="visibility-hidden">
+            <div id="ctrZeroSupplyPie" class="pie-chart-responsive"></div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/realtimedata.js?v=" + SessionSingleton.Current.ScriptId)
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                triggerCalls();
+            }, 50); // milliseconds
+        });
+    </script>
+
+}

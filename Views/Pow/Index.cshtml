@@ -1,0 +1,294 @@
+﻿@using VeilStats.Helpers;
+@{
+    ViewData["Title"] = Resource.Pow_MiningPools;
+}
+@section meta_tags{
+    <meta name="description" content="@Resource.Pow_MetaDescription">
+    <meta name="og:description" content="@Resource.Pow_MetaDescription">
+}
+<style>
+    h2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div>
+    <div class="col-md-12">
+        <h1>@Resource.Pow_Network</h1>
+        <div class="text-center last-update">@Resource.Pow_LastUpdated <span class="last-update-text"></span></div>
+        <br />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow network-tile-even-height">
+            <h2>@Resource.Pow_PowDiff</h2>
+            <div id="divPowDiff"><div class="veil-spinner height40px"></div></div>
+        </div>
+    </div>
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow network-tile-even-height">
+            <h2>@Resource.Pow_CurrentBlock</h2>
+            <div id="divCurrentBlock"><div class="veil-spinner height40px"></div></div>
+        </div>
+    </div>
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow network-tile-even-height">
+            <h2>@Resource.Pow_PoolWorkers</h2>
+            <div id="divTotalWorkers"><div class="veil-spinner height40px"></div></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow network-tile-even-height">
+            <h2>@Resource.Pow_GlobalHash</h2>
+            <div id="divGlobalHash"><div class="veil-spinner height40px"></div></div>
+            <input id="hdnGlobalHash" value="0" type="hidden" />
+            <input id="hdnGlobalHash1" value="0" type="hidden" />
+            <input id="hdnGlobalHash2" value="0" type="hidden" />
+        </div>        
+    </div>
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow network-tile-even-height">
+            <h2>@Resource.Pow_PoolHash</h2>
+            <div id="divKnownHash"><div class="veil-spinner height40px"></div></div>
+        </div>
+    </div>
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow network-tile-even-height">
+            <h2>@Resource.Pow_UnknownHash</h2>
+            <div id="divUnknownHash"><div class="veil-spinner height40px"></div></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <h1>@ViewData["Title"]</h1>
+        <br />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow even-height">
+            <h2>BSOD</h2>
+            <table cellpadding="0" cellspacing="0" class="text-center margin-bottom-5px width100 margin-top-20px">
+                <tr>
+                    <td valign="middle">
+                        <img src="https://bsod.pw/assets/img/icons_bsod/SVG/logo.svg" height="35" />
+                    </td>
+                    <td style="min-width: 125px;">
+                        <div id="divBsodHash"><div class="veil-spinner height25px"></div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="bottom">
+                        <a class="color65D5E7" href="https://bsod.pw/en/pool/dashboard/veil/">bsod.pw</a>
+                    </td>
+                    <td>
+                        
+                        <div><span id="divBsodWorkers"><span class="veil-spinner height25px"></span></span> @Resource.Pow_Workers</div>
+                    </td>
+                </tr>
+            </table>
+            <input id="hdnBsodHash" value="0" type="hidden" />
+            <input id="hdnBsodWorkers" value="0" type="hidden" />
+        </div>
+    </div>
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow even-height">
+            <h2>Suprnova</h2>
+            <table cellpadding="0" cellspacing="0" class="text-center margin-bottom-5px width100 margin-top-20px">
+                <tr>
+                    <td valign="middle">
+                        <img src="https://veil.suprnova.cc/site_assets/metronic/global/img/logo.png" />
+                    </td>
+                    <td style="min-width: 125px;">
+                        <div id="divSuprnovaHash"><div class="veil-spinner height25px"></div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="bottom">
+                        <a class="color65D5E7" href="https://veil.suprnova.cc/">veil.suprnova.cc</a>
+                    </td>
+                    <td>                        
+                        <div><span id="divSuprnovaWorkers"><span class="veil-spinner height25px"></span></span> @Resource.Pow_Workers</div>
+                    </td>
+                </tr>
+            </table>
+            <input id="hdnSuprnovaHash" value="0" type="hidden" />
+            <input id="hdnSuprnovaWorkers" value="0" type="hidden" />
+        </div>
+    </div>
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow even-height">
+            <h2>COINBLOCKERS</h2>
+            <table cellpadding="0" cellspacing="0" class="text-center margin-bottom-5px width100 margin-top-20px">
+                <tr>
+                    <td valign="middle">
+                        <img src="~/images/icons/Coinblockers.png" height="35" />
+                    </td>
+                    <td style="min-width: 125px;">
+                        <div id="divCoinblockersHash"><div class="veil-spinner height25px"></div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="bottom">
+                        <a class="color65D5E7" href="https://veil.coinblockers.com/">veil.coinblockers.com</a>
+                    </td>
+                    <td>                        
+                        <div><span id="divCoinblockersWorkers"><span class="veil-spinner height25px"></span></span> @Resource.Pow_Workers</div>
+                    </td>
+                </tr>
+            </table>
+            <input id="hdnCoinblockersHash" value="0" type="hidden" />
+            <input id="hdnCoinblockersWorkers" value="0" type="hidden" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow even-height">
+            <h2>NLPool</h2>
+            <table cellpadding="0" cellspacing="0" class="text-center margin-bottom-5px width100 margin-top-20px">
+                <tr>
+                    <td valign="middle">
+                        <img src="https://nlpool.nl/images/logonlpool.png" height="35" />
+                    </td>
+                    <td style="min-width: 125px;">
+                        <div id="divNLPoolHash"><div class="veil-spinner height25px"></div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="bottom">
+                        <a class="color65D5E7" href="https://www.nlpool.nl">nlpool.nl</a>
+                    </td>
+                    <td>                       
+                        <div><span id="divNLPoolWorkers"><span class="veil-spinner height25px"></span></span> @Resource.Pow_Workers</div>
+                    </td>
+                </tr>
+            </table>
+            <input id="hdnNLPoolHash" value="0" type="hidden" />
+            <input id="hdnNLPoolWorkers" value="0" type="hidden" />
+        </div>
+    </div>
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow even-height">
+            <h2>GOS</h2>
+            <table cellpadding="0" cellspacing="0" class="text-center margin-bottom-5px width100 margin-top-20px">
+                <tr>
+                    <td valign="middle">
+                        <img src="~/images/icons/frog.png" height="30" />
+                    </td>
+                    <td style="min-width: 125px;">
+                        <div id="divGosHash"><div class="veil-spinner height25px"></div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="bottom">
+                        <a class="color65D5E7" href="https://gos.cx/site/GetCoin?c=VEIL">gos.cx</a>
+                    </td>
+                    <td>
+                        <div><span id="divGosWorkers"><span class="veil-spinner height25px"></span></span> @Resource.Pow_Workers</div>                        
+                    </td>
+                </tr>
+            </table>
+            <input id="hdnGosHash" value="0" type="hidden" />
+            <input id="hdnGosWorkers" value="0" type="hidden" />
+        </div>
+    </div>
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow even-height">
+            <h2>VeilMine</h2>
+            <table cellpadding="0" cellspacing="0" class="text-center margin-bottom-5px width100 margin-top-20px">
+                <tr>
+                    <td valign="middle">
+                        VeilMine
+                    </td>
+                    <td style="min-width: 125px;">
+                        <div id="divVeilMineHash"><div class="veil-spinner height25px"></div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="bottom">
+                        <a class="color65D5E7" href="https://veilmine.com/">veilmine.com</a>
+                    </td>
+                    <td>
+                        <div><span id="divVeilMineWorkers"><span class="veil-spinner height25px"></span></span> @Resource.Pow_Workers</div>
+                        
+                    </td>
+                </tr>
+            </table>
+            <input id="hdnVeilMineHash" value="0" type="hidden" />
+            <input id="hdnVeilMineWorkers" value="0" type="hidden" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4 text-center mining-tile">
+        <div class="stat-shadow even-height">
+            <h2>CoinMine</h2>
+            <table cellpadding="0" cellspacing="0" class="text-center margin-bottom-5px width100 margin-top-20px">
+                <tr>
+                    <td valign="middle">
+                        <img src="https://www2.coinmine.pl/veil/site_assets/metronic/global/img/logo.png" />
+                    </td>
+                    <td style="min-width: 125px;">
+                        <div id="divCoinmineHash"><div class="veil-spinner height25px"></div></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="bottom">
+                        <a class="color65D5E7" href="https://www2.coinmine.pl/veil/">coinmine.pl</a>
+                    </td>
+                    <td>
+                        <div><span id="divCoinmineWorkers"><span class="veil-spinner height25px"></span></span> @Resource.Pow_Workers</div>
+                        
+                    </td>
+                </tr>
+            </table>
+            <input id="hdnCoinmineHash" value="0" type="hidden" />
+            <input id="hdnCoinmineWorkers" value="0" type="hidden" />
+        </div>
+    </div>
+    <div class="col-md-4 text-center">
+        &nbsp;
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class=" real-time-tile stat-shadow">
+            <h3 class="chart-title">@Resource.Pow_PowDifficulty</h3>
+            <div class="text-center last-update">@Resource.Pow_LastUpdated <span class="last-update-text"></span></div>
+            <div id="divPowDiffLineLoading" class="text-center"><div class="veil-spinner"></div></div>
+            <div id="divPowDiffLineContainer" class="visibility-hidden chart-container">
+                <div id="ctrPowDiffLine" class="line-chart-responsive"></div>
+            </div>
+            <div class="text-center" style="padding-top: 15px">
+                <div class="btn-group btn-group-lg text-center my-btn-group-responsive" role="group" aria-label="PoW Difficulty Options">
+                    <button type="button" class="btn btn-primary btn-cta" data-type="2" data-range="1">@Resource.Pow_3Days</button>
+                    <button type="button" class="btn btn-primary" data-type="2" data-range="2">@Resource.Pow_30Days</button>
+                    <button type="button" class="btn btn-primary" data-type="2" data-range="3">@Resource.Pow_60Days</button>
+                    <button type="button" class="btn btn-primary" data-type="2" data-range="4">@Resource.Pow_90Days</button>
+                </div>
+            </div>
+            <div class="text-center font-small paddingTop10">@Resource.Pow_ZoomChart</div>
+        </div>      
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                triggerMiningPoolCalls();
+            }, 100); // milliseconds
+        });
+    </script>
+    @Scripts.Render("~/Scripts/graph-data.js?v=" + SessionSingleton.Current.ScriptId)
+    @Scripts.Render("~/Scripts/mining-pools.js?v=" + SessionSingleton.Current.ScriptId)
+}
+
+
+

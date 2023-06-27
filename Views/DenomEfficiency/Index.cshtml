@@ -1,0 +1,61 @@
+﻿@using VeilStats.Helpers;
+@{
+    ViewData["Title"] = Resource.DenomEfficiency_MetaTitle;
+}
+@section meta_tags{
+    <meta name="description" content="@Resource.DenomEfficiency_MetaDescription">
+    <meta name="og:description" content="@Resource.DenomEfficiency_MetaDescription">
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="real-time-tile stat-shadow">
+            <h3 class="chart-title">@Resource.DenomEfficiency_RewardSnapShot24hr</h3>
+            <div class="text-center">@Resource.DenomEfficiency_LastUpdated <span class="last-update-text"></span></div>
+            <div id="div1DayLoading" class="text-center"><div class="veil-spinner"></div></div>
+            <div id="div1DayColumnContainer" class="chart-container visibility-hidden">
+                <div id="ctr1DayColumn" class="line-chart-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="real-time-tile stat-shadow">
+            <h3 class="chart-title">@Resource.DenomEfficiency_RewardSnapShot3Day</h3>
+            <div class="text-center last-update">@Resource.DenomEfficiency_LastUpdated <span class="last-update-text"></span></div>
+            <div id="div3DayLoading" class="text-center"><div class="veil-spinner"></div></div>
+            <div id="div3DayColumnContainer" class="chart-container visibility-hidden">
+                <div id="ctr3DayColumn" class="line-chart-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="real-time-tile stat-shadow">
+            <h3 class="chart-title">@Resource.DenomEfficiency_RewardSnapShot7Day</h3>
+            <div class="text-center last-update">@Resource.DenomEfficiency_LastUpdated <span class="last-update-text"></span></div>
+            <div id="div7DayLoading" class="text-center"><div class="veil-spinner"></div></div>
+            <div id="div7DayColumnContainer" class="chart-container visibility-hidden">
+                <div id="ctr7DayColumn" class="line-chart-responsive"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @Scripts.Render("~/Scripts/denom-efficiency.js?v=" + SessionSingleton.Current.ScriptId)
+    <script>
+        $(document).ready(function () {
+            setTimeout(function () {
+                triggerHistoryCalls();
+            }, 50); // milliseconds
+        });
+    </script>
+
+}
+
+
+
